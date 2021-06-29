@@ -1,10 +1,10 @@
 import json
-
-import aiohttp
 import asyncio
 
+import aiohttp
+
 from utils.jsonify import load_json
-from utils.socket import get_message
+from utils.socket_utils import get_message
 
 socket_url = 'wss://djgamelink.migufun.com/socket.io/?EIO=3&transport=websocket'
 
