@@ -87,5 +87,9 @@ async def task_share(client, headers, data):
 
 
 async def main():
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    headers['Referer'] = 'https://servicewechat.com/wx589ba6fdb6d7d2da/devtools/page-frame.html'
+    async with aiohttp.ClientSession() as client:
+        html = await golds_tree_receive(client, headers, {})
+        print(html)
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())

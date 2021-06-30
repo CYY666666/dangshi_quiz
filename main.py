@@ -13,7 +13,11 @@ headers = {
     'Origin': 'https://game.servicewechat.com',
     'Upgrade': 'websocket',
     'Host': 'djgamelink.migufun.com',
-    'Connection': 'Upgrade'
+    'Connection': 'Upgrade',
+    'Sec-WebSocket-Extensions': 'permessage-deflate',
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache',
+    'Accept-Language': 'en-us,en'
 }
 
 
@@ -25,7 +29,7 @@ print(get_user_info())
 async def main():
     timeout = aiohttp.ClientTimeout(total=20)
     async with aiohttp.ClientSession(timeout=timeout) as session:
-        async with session.ws_connect(socket_url, headers=headers) as ws:
+        async with session.ws_connect(socket_url, headers=headers, proxy='http://127.0.0.1:8888') as ws:
             async for msg in ws:
                 if msg.type == aiohttp.WSMsgType.TEXT:
                     data = get_message(msg.data)
